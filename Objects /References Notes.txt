@@ -1,1 +1,7 @@
-o
+
+Javascript Objects : 
+
+When naming a key, if it has a space you have to put it in quotation marks. EX 'Fuel Type ' 
+
+Don't forget to add commas at the end of each value, to avoid an error. 
+
