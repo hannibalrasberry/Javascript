@@ -1,6 +1,7 @@
 CheatSheet links 
 1.)  https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-introduction/cheatsheet
 2.) https://www.codecademy.com/journeys/front-end-engineer/paths/fecj-22-web-development-foundations/tracks/fecj-22-introduction-to-front-end-engineer-career-path/modules/fecp-22-getting-started-7905666b-6bed-4dbc-9a13-52b723b66d3d/informationals/fecp-22-helpful-resources
+3.) https://www.codecademy.com/journeys/front-end-engineer/paths/fecj-22-web-development-foundations/tracks/fecj-22-introduction-to-front-end-engineer-career-path/modules/fecp-22-getting-started-7905666b-6bed-4dbc-9a13-52b723b66d3d/informationals/fecp-community-resources
 
 What is a method ? 
 
