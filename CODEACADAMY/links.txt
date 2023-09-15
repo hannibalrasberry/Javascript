@@ -1,9 +1,20 @@
 CheatSheet links 
 1.)  https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-introduction/cheatsheet
+2.) https://www.codecademy.com/journeys/front-end-engineer/paths/fecj-22-web-development-foundations/tracks/fecj-22-introduction-to-front-end-engineer-career-path/modules/fecp-22-getting-started-7905666b-6bed-4dbc-9a13-52b723b66d3d/informationals/fecp-22-helpful-resources
 
-Privacy
-Accessing and updating properties is fundamental in working with objects. However, there are cases in which we don’t want other code simply accessing and updating an object’s properties. When discussing privacy in objects, we define it as the idea that only certain properties should be mutable or able to change in value.
+What is a method ? 
 
-Certain languages have privacy built-in for objects, but JavaScript does not have this feature. Rather, JavaScript developers follow naming conventions that signal to other developers how to interact with a property. One common convention is to place an underscore _ before the name of a property to mean that the property should not be altered. Here’s an example of using _ to prepend a property.
+A method is a function which is a property of an object. There are two kinds of methods: instance methods which are built-in tasks performed by an object instance, or static methods which are tasks that are called directly on an object constructor.
 
+Reference : https://developer.mozilla.org/en-US/docs/Glossary/Method
+Reference : https://www.codecademy.com/article/fwd-js-methods-functions
 
+What is a Property ?
+
+A JavaScript property is a member of an object that associates a key with a value. A JavaScript object is a data structure that stores a collection of properties.
+
+What is an object ? 
+
+In JavaScript, objects can be seen as a collection of properties. With the object literal syntax, a limited set of properties are initialized; then properties can be added and removed. Property values can be values of any type, including other objects, which enables building complex data structures. Properties are identified using key values. A key value is either a String value or a Symbol value.
+
+There are two types of object properties: The data property and the accessor property.
