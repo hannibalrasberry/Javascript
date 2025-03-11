@@ -9,13 +9,25 @@ The value of this changes based on how a function is invoked.
 In the global execution context (outside of any function), this refers to:
 
     - window object in browsers.
-    - global This or global in Node.js.
+    - globalThis or global in Node.js.
 
 ```Example:
 
 console.log(this);
 // In a browser: Window {...}
 // In Node.js: global {...}
+```
+
+```What is a GlobalThis or global in Node.js ?
+
+globalThis is a standardized way (introduced in ECMAScript 2020) to access the global object regardless of the JavaScript environment. In browsers, the global object is typically accessed as window, while in Node.js it’s accessed as global. The introduction of globalThis means you can now refer to the global object with a single name that works in any environment.
+
+In Node.js, global is the object that holds all the global variables and functions. It’s where Node.js stores built-in functions, modules, and other variables that should be accessible from anywhere in your code. With globalThis, Node.js now provides a standard way to refer to this same object. In other words, in a Node.js environment, globalThis and global refer to the exact same object.
+
+console.log(globalThis === global); // true in Node.js
+
+This unified approach is especially useful in code that needs to run in multiple environments (like libraries that work both in browsers and in Node.js) because you no longer need to check for the existence of window, global, or other environment-specific identifiers.
+
 ```
 
 ## 2. this Inside an Object Method
