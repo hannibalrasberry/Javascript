@@ -27,3 +27,8 @@ const restaurant = {
     },
   },
 };
+
+let [main, secondary] = (restaurant.categories[(secondary, main)] = [
+  secondary,
+  main,
+]);
