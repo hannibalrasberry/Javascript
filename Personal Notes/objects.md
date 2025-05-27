@@ -1,4 +1,43 @@
-When you are Deconstructing an array, or object. It is rather easy to pull the data from it.
+In JavaScript, the formal definition of an object is:
+
+A collection of key-value pairs where keys (also called properties) are strings or Symbols, and values can be any valid JavaScript data type, including other objects or functions.
+
+What is a Symbol?
+
+A Symbol is a unique and immutable primitive value used as an identifier for object properties.
+
+Even if two symbols have the same description, they are always different:
+
+```Example
+const sym1 = Symbol("id");
+const sym2 = Symbol("id");
+
+console.log(sym1 === sym2); // false
+```
+
+Why Use Symbols?
+
+Symbols are useful when:
+
+You want to create hidden or internal object properties
+
+You need unique keys that won’t accidentally collide with other keys
+
+You’re working with well-known symbols that control object behavior (e.g. iteration, primitive coercion)
+
+```Example: Using a Symbol as a Key
+const id = Symbol("userID");
+
+const user = {
+  name: "Alice",
+  [id]: 1234 // note the square brackets to use a symbol as a key
+};
+
+console.log(user);         // { name: "Alice", [Symbol(userID)]: 1234 }
+console.log(user[id]);     // 1234
+console.log(Object.keys(user)); // ["name"] — symbol is hidden from typical key lookups
+
+```
 
 ## Syntax
 
@@ -38,3 +77,10 @@ returnAnyProp(spaceship, 'homePlanet'); // Returns 'Earth'
 ```
 
 ## Deconstucting
+
+```Notes
+
+To descturcture objects you have to use the curly braces
+
+
+```
