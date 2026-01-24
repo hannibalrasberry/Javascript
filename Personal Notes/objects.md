@@ -39,6 +39,18 @@ console.log(Object.keys(user)); // ["name"] — symbol is hidden from typical ke
 
 ```
 
+Symbols Are Not Enumerated
+
+Unlike string keys, symbol keys don’t appear in:
+
+Object.keys(obj)
+
+for...in loops
+
+JSON.stringify(obj)
+
+To get them, you use:
+
 ## Syntax
 
 A simple assigment can be done.
