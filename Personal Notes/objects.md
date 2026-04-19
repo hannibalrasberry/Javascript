@@ -2,7 +2,7 @@ In JavaScript, the formal definition of an object is:
 
 A collection of key-value pairs where keys (also called properties) are strings or Symbols, and values can be any valid JavaScript data type, including other objects or functions.
 
-What is a Symbol?
+# What is a Symbol?
 
 A Symbol is a unique and immutable primitive value used as an identifier for object properties.
 
@@ -15,17 +15,101 @@ const sym2 = Symbol("id");
 console.log(sym1 === sym2); // false
 ```
 
-Why Use Symbols?
+Something to kep in mind. **Symbol** is not a type fo keyword like bool, int, string, or var in languages you see in C++ or Java.
+
+Instead, **Symbol** in Javascript is a function that returns a primitive value of a new symbol type
+
+```🔹 What is a primitive value ?
+
+In JavaSript, a primitive value is a data type thats not an object and has no methods.
+
+It is immutable and represents a single, raw value.
+
+Primitive values are stored by value, not by reference.
+
+There are 7 Primitive Data Types in JavaScript
+1. string
+2. number
+3. bigint
+4. boolean
+5. undefined
+6. null
+7. symbol
+
+⁉️ Characteristics of Primitives
+
+*Feature                      *Description
+
+Immutable                     You can not change the value (You can only replace it)
+Not Objects                   No properties or methods(though they can
+                              appear to  have  them temporarily)
+Copied by value               When assigned or passed to a function,
+                              a copy of the value is used
+
+🔹 Primitives vs Objects
+
+let a = 5;
+let b = a;
+b = 10;
+console.log(a); // 5 — primitive copied by value
+
+But with an object:
+
+let obj1 = { x: 5 };
+let obj2 = obj1;
+obj2.x = 10;
+console.log(obj1.x); // 10 — object copied by reference
+
+👁 Keep in Mind
+
+Objects don't pass copies of values in Javascript.
+
+- In the example mentioned above obj1 holds a refernce to an objecct {x: 5}
+- So when you assign obj2 = obj, you're not creating a new object. No what you're doing is copying a reference point
+- Both obj1 and obj2 now point to the exact smae object in memory
+- So when you change obj2.x = 10, you're modifying the object itself, and that change is visible in both values
+
+🔹 Important Concept
+- Objects, arrays, and functions in JavaScript are stored by reference.
+- When you assign one to another variable, you're copying the reference, not cloning the data.
+- Only primitive values (string, number, boolean, etc.) are stored by value (i.e., fully copied).
+
+🔹 If You Want to Copy the Object Instead
+To make a true copy, you need to clone the object:
+
+let obj1 = { x: 5 };
+let obj2 = { ...obj1 }; // spread syntax
+obj2.x = 10;
+console.log(obj1.x); // 5
+
+
+```
+
+```🔹 So what is Symbol exactly?
+
+A Symbol is a unique and immutable( Remember a immutable value is a value that can only have its value replaced never changed. Reference the earlier lines for a deeper explnation.The quick summation of it is that the value must be directly reassigned) primative value used as an identifier for object properties.
+
+Even if two symbols have the same description, they are always different
+
+const sym1 = Symbol("id");
+const sym2 = Symbol("id");
+
+console.log(sym1 === sym2) // false
+
+```
+
+```🔹 Why Use Symbols?
 
 Symbols are useful when:
 
-You want to create hidden or internal object properties
+1. You want to create hidden or internal object properties
 
-You need unique keys that won’t accidentally collide with other keys
+2. You need unique keys that won’t accidentally collide with other keys
 
-You’re working with well-known symbols that control object behavior (e.g. iteration, primitive coercion)
+3. You’re working with well-known symbols that control object behavior (e.g. iteration, primitive coercion)
 
-```Example: Using a Symbol as a Key
+Example: Using a Symbol as a Key
+
 const id = Symbol("userID");
 
 const user = {
@@ -39,7 +123,7 @@ console.log(Object.keys(user)); // ["name"] — symbol is hidden from typical ke
 
 ```
 
-Symbols Are Not Enumerated
+```🔹 Symbols Are Not Enumerated
 
 Unlike string keys, symbol keys don’t appear in:
 
@@ -51,48 +135,73 @@ JSON.stringify(obj)
 
 To get them, you use:
 
-## Syntax
-
-A simple assigment can be done.
-
-```Sample Code
-const restaurant = {
-  name: 'Classico Italiano',
-  location: 'Via Angelo Tavanti 23, Firenze, Italy',
-  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-  };
+Object.getOwnPropertySymbols(user); // [Symbol(userID)]
 ```
 
-```Example 1
-In the method below, we show you ways to assign the values to a varible or constant. A tick that can be applied to skip a value, is to simply provide a blank space as shown below.
+```🔹 If you wish to copy a Object only by value
 
-const [first, second] = restaurant.categories;
-const [firstBeta, , secondBeta] = restaurant.categories;
-```
+let obj1 = { x: 5 };
+let obj2 = { ...obj1 }; // spread syntax
+obj2.x = 10;
+console.log(obj1.x); // 5
 
-```Example 2
-Keep in mind that when it comes to objects, there are ways to assign those using functions.
+using the spread syntax will copy the value only to the object and separate the values.
+As it stand the spread method is most common and readable.
 
-let spaceship = {
-  'Fuel Type': 'Turbo Fuel',
-  'Active Duty': true,
-  homePlanet: 'Earth',
-  numCrew: 5
-};
+Here's a key distinction :
+    Destructuring pulls values out of an object.
+    Spread Syntax copies the whole object into a new one.
+
+Using Object.assign() (older method):
+jconst obj1 = { a: 1, b: 2 };
+const obj2 = Object.assign({}, obj1);
+
+⚠️ Destructuring Doesn't Clone — But It Can Extract
+const obj1 = { a: 1, b: 2 };
+const { a, b } = obj1;
+
+console.log(a); // 1
+console.log(b); // 2
+
+You're not creating a new object — you're extracting values into separate variables.
+This doesn't clone the original object.
+
+🔹 When You Actually Want to Clone
+Goal                                Use
+
+Copy entire object                  { ...obj } or Object.assign()
+Copy nested objects	                Use deep copy (see below)
+Extract values only	                Object destructuring
 
 
-let returnAnyProp = (objectName, propName) => objectName[propName];
+🔹 Shallow vs Deep Copy
+Most methods (like spread or Object.assign) only make shallow copies:
 
-returnAnyProp(spaceship, 'homePlanet'); // Returns 'Earth'
-```
+const obj1 = { a: 1, nested: { x: 10 } };
+const obj2 = { ...obj1 };
 
-## Deconstucting
+obj2.nested.x = 99;
+console.log(obj1.nested.x); // 99 — still shared reference!
 
-```Notes
 
-To descturcture objects you have to use the curly braces
+To make a deep copy, you need:
+
+1. structuredClone() (modern and safe):
+            const obj2 = structuredClone(obj1);
+
+2. JSON.parse(JSON.stringify(obj)) (not recommended for all cases):
+              const obj2 = JSON.parse(JSON.stringify(obj1));
+              // fails on functions, Dates, Symbols, etc.
+
+✅ Summary
+    Method                   Clones?         Notes
+
+const { a } = obj                 ❌          Destructures (extracts), not clones
+{ ...obj }                        ✅          Shallow clone                              Object.assign({}, obj)`           ✅          Shallow clone                              structuredClone(obj)`             ✅✅        Deep clone (best for nested objects)
+JSON.parse(JSON.stringify(obj))`  ✅          Deep clone, but lossy (no functions, etc.)
+
+
+
 
 
 ```
